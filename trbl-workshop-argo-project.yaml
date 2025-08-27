@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: trbl-workshop
+  # The AppProject must be created in the namespace where Argo CD is installed.
+  # On OpenShift, this is typically 'openshift-gitops'.
+  namespace: openshift-gitops
+spec:
+  description: Argo CD project for hub components.
+
+  # Allow applications to be sourced from any repository.
+  # For better security, you can restrict this to specific Git repositories,
+  # e.g., https://github.com/grantomation/ocluster.git
+  sourceRepos:
+  - '*'
+
+  # Allow applications to be deployed to any namespace on the local cluster.
+  destinations:
+  - namespace: '*'
+    server: https://kubernetes.default.svc
+
+  # Allow this project to manage cluster-scoped resources.
+  # This is a powerful permission, use with caution.
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
