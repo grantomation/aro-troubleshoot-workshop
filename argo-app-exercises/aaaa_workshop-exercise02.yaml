@@ -13,7 +13,7 @@ spec:
   source:
     path: trbl-workshop/setup/exercise-02
     repoURL: https://github.com/grantomation/aro-troubleshoot-workshop/
-    targetRevision: main
+    targetRevision: master
     helm:
       parameters:
       - name: "userCount"
