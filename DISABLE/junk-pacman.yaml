@@ -16,7 +16,7 @@ spec:
       jsonnet: {}
       recurse: true
     path: applications/pacman/prod
-    repoURL: https://github.com/joelapatatechaude/ocluster
+    repoURL: https://github.com/grantomation/aro-troubleshoot-workshop
   syncPolicy:
     syncOptions:
     - Prune=true
