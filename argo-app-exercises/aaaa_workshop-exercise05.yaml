@@ -12,7 +12,7 @@ spec:
   project: trbl-workshop
   source:
     path: trbl-workshop/setup/exercise-05
-    repoURL: https://github.com/grantomation/troubleshoot-workshop/
+    repoURL: https://github.com/grantomation/aro-troubleshoot-workshop/
     targetRevision: main
     helm:
       parameters:
