@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pacman-prod
+  namespace: openshift-gitops
+  labels:
+    type: applications
+    app: pacman
+spec:
+  destination:
+    name: in-cluster
+    namespace: pacman-prod
+  project: default
+  source:
+    directory:
+      jsonnet: {}
+      recurse: true
+    path: applications/pacman/prod
+    repoURL: https://github.com/grantomation/aro-troubleshoot-workshop/
+  syncPolicy:
+    syncOptions:
+    - Prune=true
+    - CreateNamespace=true

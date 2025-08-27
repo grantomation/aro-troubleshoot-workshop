@@ -30,3 +30,5 @@ helm upgrade --install trbl-workshop-users \
 oc delete -f argo-app-exercises/ -n openshift-gitops
 oc delete -f trbl-workshop-argo-project.yaml
 ```
+
+## MANUALLY SYNC THE EXERCISES
