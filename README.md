@@ -14,14 +14,6 @@
 ## WE MAY NEED TO INCREASE THE SIZE OF THE CLUSTER
 ```./scaleup.sh```
 
-## CREATE USER ROLE BINDINGS
-```
-helm upgrade --install trbl-workshop-users \
-  trbl-workshop/users \
-  --namespace trbl-workshop \
-  --create-namespace \
-  --set userCount=20
-```
 ## ADD CLUSTER ADMIN??? TO GITOPS
 ```
 oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:openshift-gitops:openshift-gitops-argocd-application-controller
@@ -31,6 +23,15 @@ oc adm policy add-role-to-user cluster-admin system:serviceaccount:openshift-git
 
 ## ADD THE ARGO APPS
 ``` oc apply -f argo-app-exercises/ -n openshift-gitops ```
+
+## CREATE USER ROLE BINDINGS
+```
+helm upgrade --install trbl-workshop-users \
+  trbl-workshop/users \
+  --namespace trbl-workshop \
+  --create-namespace \
+  --set userCount=20
+```
 
 ## CLEANUP
 ```

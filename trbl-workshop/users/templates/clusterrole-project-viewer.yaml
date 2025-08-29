@@ -1,0 +1,36 @@
+# templates/clusterrole-project-viewer.yaml
+
+# Role: Allows viewing any project that starts with the name 'user'.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: workshop-project-viewer-role
+rules:
+- apiGroups: ["project.openshift.io"]
+  resources: ["projects"]
+  # 'resourceNames' uses a wildcard ('*') to match any project name like 'user01-project', 'user-special', etc.
+  resourceNames: ["user*"]
+  verbs: ["get"]
+- apiGroups: [""]
+  resources: ["namespaces"]
+  resourceNames: ["user*"]
+  verbs: ["get"]
+---
+# Binding: Binds all users to the wildcard project viewer role.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: workshop-users-project-viewer-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: workshop-project-viewer-role
+subjects:
+{{- if .Values.userCount | int }}
+{{- $userCount := .Values.userCount | int }}
+{{- range $index := until $userCount }}
+- kind: User
+  name: user{{ printf "%02d" (add $index 1) }}
+  apiGroup: rbac.authorization.k8s.io
+{{- end }}
+{{- end }}
