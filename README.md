@@ -1,3 +1,7 @@
+# WEBSITE
+
+``` https://trbl-workshop.cszevaco.com/ ```
+
 ## INSTALL HTPASSWORD
 ```oc patch oauth/cluster --type=json -p='[{"op": "add", "path": "/spec/identityProviders/-", "value": {"name": "htpasswd", "mappingMethod": "claim", "type": "HTPasswd", "htpasswd": {"fileData": {"name": "htpass-my-secret"}}}}]'```
 
@@ -18,9 +22,12 @@ helm upgrade --install trbl-workshop-users \
   --create-namespace \
   --set userCount=20
 ```
+## ADD CLUSTER ADMIN??? TO GITOPS
+```
+oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:openshift-gitops:openshift-gitops-argocd-application-controller
 
-## CREATE THE 'hub' ARGOCD PROJECT
-``` oc apply -f trbl-workshop-argo-project.yaml ```
+oc adm policy add-role-to-user cluster-admin system:serviceaccount:openshift-gitops:openshift-gitops-argocd-application-controller
+```
 
 ## ADD THE ARGO APPS
 ``` oc apply -f argo-app-exercises/ -n openshift-gitops ```
@@ -28,7 +35,6 @@ helm upgrade --install trbl-workshop-users \
 ## CLEANUP
 ```
 oc delete -f argo-app-exercises/ -n openshift-gitops
-oc delete -f trbl-workshop-argo-project.yaml
 ```
 
 ## MANUALLY SYNC THE EXERCISES
