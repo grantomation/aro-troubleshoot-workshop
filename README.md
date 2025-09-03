@@ -30,7 +30,7 @@ helm upgrade --install trbl-workshop-users \
   trbl-workshop/users \
   --namespace trbl-workshop \
   --create-namespace \
-  --set userCount=20
+  --set userCount=25
 ```
 
 ## CLEANUP

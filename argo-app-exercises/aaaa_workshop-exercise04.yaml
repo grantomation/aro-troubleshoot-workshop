@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: workshop-exercise02
+  name: workshop-exercise04
   namespace: openshift-gitops
   labels:
     type: workshop-trbl
@@ -11,10 +11,12 @@ spec:
     namespace: default
   project: default
   source:
-    path: trbl-workshop/setup/exercise-02
+    path: trbl-workshop/setup/exercise-04
     repoURL: https://github.com/grantomation/aro-troubleshoot-workshop/
     targetRevision: master
     helm:
       parameters:
       - name: "userCount"
-        value: "10"
+        value: "25"
+
+
